@@ -13,10 +13,10 @@
     "ExpirationMinutes": 60
   },
   "SMTP": {
-    "SmtpServer": "smtp-mail.outlook.com",
-    "Port": 587,
-    "Email": "info@sca-muc.de",
-    "Password": "scaINF!11"
+    "SmtpServer": "SMTP Server",
+    "Port": Port,
+    "Email": "email",
+    "Password": "Password"
   },
   "Twilio": {
     
