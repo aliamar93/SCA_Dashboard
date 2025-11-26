@@ -1,15 +1,15 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=THINKPAD-AMAR\\SQLEXPRESS;Database=SCADASHBOARD;User Id=sa;Password=inter123net;TrustServerCertificate=True;Encrypt=False;Trusted_Connection=False;"
+    "DefaultConnection": "Server=SQLEXPRESS;Database=SCADASHBOARD;User Id=sa;Password=password;TrustServerCertificate=True;Encrypt=False;Trusted_Connection=False;"
   },
   "Encryption": {
-    "Key": "12345678901234567890123456789012",
-    "IV": "1234567890123456"
+    "Key": "32 numbers",
+    "IV": "16 numbers"
   },
   "Jwt": {
-    "Issuer": "AMARALI",
-    "Audience": "AMARALI",
-    "SecretKey": "12345678901234567890123456789012",
+    "Issuer": "AMARALI__",
+    "Audience": "AMARALI__",
+    "SecretKey": "32 numbers",
     "ExpirationMinutes": 60
   },
   "SMTP": {
