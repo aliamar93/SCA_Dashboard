@@ -238,14 +238,11 @@ namespace SCADashboard.Web.Controllers
 
                 if(!string.IsNullOrEmpty(user.PhoneNo))
                 {
-                    //Twilio WhatsApp Example Usage
-                    // Twilio credentials
                     var twilioCredentials = ReadJsonFile(null);
-                    var accountSid = Decryption(twilioCredentials.Twilio.accountSid); //"AC12f021ab37b5374f8daf5f978c4ee37f";
-                    var authToken = Decryption(twilioCredentials.Twilio.authToken);//"f53ca7fa4221d3ca9d904ee612f1f649";
+                    var accountSid = Decryption(twilioCredentials.Twilio.accountSid);
+                    var authToken = Decryption(twilioCredentials.Twilio.authToken);
 
-                    //var accountSid = "AC3a687f9d13e463a11853cbe602011764";
-                    //var authToken = "6901a77f1970d9613f1a2247aade79f5";
+                    
                     TwilioClient.Init(accountSid, authToken);
 
                     var messageOptions = new CreateMessageOptions(
