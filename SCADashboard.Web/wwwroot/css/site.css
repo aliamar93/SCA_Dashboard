@@ -1,0 +1,58 @@
+html {
+  font-size: 14px;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Sidebar */
+#wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    transition: all 0.3s;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+#page-content-wrapper {
+    flex: 1;
+}
+
+/* Sidebar hover effect */
+.list-group-item-action:hover {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+}
+
+/* Navbar shadow */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: -250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+}

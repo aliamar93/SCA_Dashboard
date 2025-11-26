@@ -1,0 +1,436 @@
+﻿@model IEnumerable<SCADashboard.Core.Models.User>
+
+
+@* @using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@using SCADashboard.Core.ModelView
+@inject IHttpContextAccessor HttpContextAccessor *@
+@{
+    // var session = HttpContextAccessor.HttpContext.Session;
+    // var sessionJson = session.GetString("UserSession");
+    // List<ModulePermissionDto> modules = new();
+    // var pagePermission = new PagePermissionDto();
+    // if (!string.IsNullOrEmpty(sessionJson))
+    // {
+    //     var userSession = JsonConvert.DeserializeObject<UserSession>(sessionJson);
+    //     modules = userSession?.Permissions; // This is your List<ModulePermissionDto>
+    //     var currentUrl = HttpContextAccessor.HttpContext.Request.Path.Value?.ToLower();
+    //     pagePermission = SCADashboard.Infrastructure.Helper.PermissionHelper.GetPagePermission(modules, currentUrl);
+
+    //     // var pagePermission = modules
+    //     //     .SelectMany(m => m.Pages)
+    //     //     .FirstOrDefault(p => p.PageUrl.Equals(currentUrl, StringComparison.OrdinalIgnoreCase));
+    // }
+
+
+    var pagePermission = SCADashboard.Infrastructure.Helper.PermissionHelper.GetCurrentPagePermission(HttpContextAccessor.HttpContext);
+}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-xl">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h3 class="nk-block-title page-title">Users Lists</h3>
+                        <div class="nk-block-des text-soft">
+                            <p>You have total @Model.Count() users.</p>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-head-content -->
+                    <div class="nk-block-head-content d-flex">
+                        @{
+                            if (pagePermission.CanAdd)
+                            {
+                                <button type="button" class="btn btn-primary" id="btnAdd" value="0" actionfor="Add">Add User</button>
+                            }
+                        }
+                    </div><!-- .nk-block-head-content -->
+                </div><!-- .nk-block-between -->
+            </div><!-- .nk-block-head -->
+            <div class="nk-block">
+                <div class="card card-stretch">
+                    <div class="card-inner-group">
+                        <div class="card-inner position-relative card-tools-toggle">
+                            <div class="card-title-group">
+                                <div class="card-tools">
+                                    <div class="form-inline flex-nowrap gx-3">
+                                        <div class="form-wrap w-150px">
+                                            <select class="form-select js-select2" data-search="off" data-placeholder="Bulk Action">
+                                                <option value="">Bulk Action</option>
+                                                <option value="email">Send Email</option>
+                                                <option value="group">Change Group</option>
+                                                <option value="suspend">Suspend User</option>
+                                                <option value="delete">Delete User</option>
+                                            </select>
+                                        </div>
+                                        <div class="btn-wrap">
+                                            <span class="d-none d-md-block"><button class="btn btn-dim btn-outline-light disabled">Apply</button></span>
+                                            <span class="d-md-none"><button class="btn btn-dim btn-outline-light btn-icon disabled"><em class="icon ni ni-arrow-right"></em></button></span>
+                                        </div>
+                                    </div><!-- .form-inline -->
+                                </div><!-- .card-tools -->
+                                <div class="card-tools me-n1">
+                                    <ul class="btn-toolbar gx-1">
+                                        <li>
+                                            <a href="javascript:;" class="btn btn-icon search-toggle toggle-search" data-target="search"><em class="icon ni ni-search"></em></a>
+                                        </li><!-- li -->
+                                        <li class="btn-toolbar-sep"></li><!-- li -->
+                                        <li>
+                                            <div class="toggle-wrap">
+                                                <a href="javascript:;" class="btn btn-icon btn-trigger toggle" data-target="cardTools"><em class="icon ni ni-menu-right"></em></a>
+                                                <div class="toggle-content" data-content="cardTools">
+                                                    <ul class="btn-toolbar gx-1">
+                                                        <li class="toggle-close">
+                                                            <a href="javascript:;" class="btn btn-icon btn-trigger toggle" data-target="cardTools"><em class="icon ni ni-arrow-left"></em></a>
+                                                        </li><!-- li -->
+                                                        <li>
+                                                            <div class="dropdown">
+                                                                <a href="javascript:;" class="btn btn-trigger btn-icon dropdown-toggle" data-bs-toggle="dropdown">
+                                                                    <div class="dot dot-primary"></div>
+                                                                    <em class="icon ni ni-filter-alt"></em>
+                                                                </a>
+                                                                <div class="filter-wg dropdown-menu dropdown-menu-xl dropdown-menu-end">
+                                                                    <div class="dropdown-head">
+                                                                        <span class="sub-title dropdown-title">Filter Users</span>
+                                                                        <div class="dropdown">
+                                                                            <a href="javascript:;" class="btn btn-sm btn-icon">
+                                                                                <em class="icon ni ni-more-h"></em>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="dropdown-body dropdown-body-rg">
+                                                                        <div class="row gx-6 gy-3">
+                                                                            <div class="col-6">
+                                                                                <div class="custom-control custom-control-sm custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="hasBalance">
+                                                                                    <label class="custom-control-label" for="hasBalance"> Have Balance</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="custom-control custom-control-sm custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="hasKYC">
+                                                                                    <label class="custom-control-label" for="hasKYC"> KYC Verified</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="overline-title overline-title-alt" for="role">Role</label>
+                                                                                    <select class="form-select js-select2" id="role">
+                                                                                        <option value="any">Any Role</option>
+                                                                                        <option value="investor">Investor</option>
+                                                                                        <option value="seller">Seller</option>
+                                                                                        <option value="buyer">Buyer</option>
+                                                                                    </select>
+
+                                                                                    @*<select id="role" asp-for="@Model." class="form-select js-select2" asp-items="ViewBag.Roles" data-placeholder="Select Role">
+                                                                                            <option value="">--Select Role--</option>
+                                                                                        </select> *@
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="overline-title overline-title-alt">Status</label>
+                                                                                    <select class="form-select js-select2">
+                                                                                        <option value="any">Any Status</option>
+                                                                                        <option value="active">Active</option>
+                                                                                        <option value="pending">Pending</option>
+                                                                                        <option value="suspend">Suspend</option>
+                                                                                        <option value="deleted">Deleted</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <div class="form-group">
+                                                                                    <button type="button" class="btn btn-secondary">Filter</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="dropdown-foot between">
+                                                                        <a class="clickable" href="javascript:;">Reset Filter</a>
+                                                                        <a href="javascript:;">Save Filter</a>
+                                                                    </div>
+                                                                </div><!-- .filter-wg -->
+                                                            </div><!-- .dropdown -->
+                                                        </li><!-- li -->
+                                                        <li>
+                                                            <div class="dropdown">
+                                                                <a href="javascript:;" class="btn btn-trigger btn-icon dropdown-toggle" data-bs-toggle="dropdown">
+                                                                    <em class="icon ni ni-setting"></em>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-xs dropdown-menu-end">
+                                                                    <ul class="link-check">
+                                                                        <li><span>Show</span></li>
+                                                                        <li class="active"><a href="javascript:;">10</a></li>
+                                                                        <li><a href="javascript:;">20</a></li>
+                                                                        <li><a href="javascript:;">50</a></li>
+                                                                    </ul>
+                                                                    <ul class="link-check">
+                                                                        <li><span>Order</span></li>
+                                                                        <li class="active"><a href="javascript:;">DESC</a></li>
+                                                                        <li><a href="javascript:;">ASC</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div><!-- .dropdown -->
+                                                        </li><!-- li -->
+                                                    </ul><!-- .btn-toolbar -->
+                                                </div><!-- .toggle-content -->
+                                            </div><!-- .toggle-wrap -->
+                                        </li><!-- li -->
+                                    </ul><!-- .btn-toolbar -->
+                                </div><!-- .card-tools -->
+                            </div><!-- .card-title-group -->
+                            <div class="card-search search-wrap" data-search="search">
+                                <div class="card-body">
+                                    <div class="search-content">
+                                        <a href="javascript:;" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
+                                        <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search by user or email">
+                                        <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
+                                    </div>
+                                </div>
+                            </div><!-- .card-search -->
+                        </div><!-- .card-inner -->
+                        <div class="card-inner p-0">
+                            <div class="nk-tb-list nk-tb-ulist">
+                                <div class="nk-tb-item nk-tb-head">
+                                    <div class="nk-tb-col nk-tb-col-check">
+                                        <div class="custom-control custom-control-sm custom-checkbox notext">
+                                            <input type="checkbox" class="custom-control-input" id="uid">
+                                            <label class="custom-control-label" for="uid"></label>
+                                        </div>
+                                    </div>
+                                    <div class="nk-tb-col"><span class="sub-text">User</span></div>
+                                    <div class="nk-tb-col tb-col-mb"><span class="sub-text">User Name</span></div>
+                                    <div class="nk-tb-col tb-col-md"><span class="sub-text">Role</span></div>
+                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Verified</span></div>
+                                    <div class="nk-tb-col tb-col-lg"><span class="sub-text">Last Login</span></div>
+                                    <div class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></div>
+                                    <div class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></div>
+
+                                    <!-- Add Columns -->
+                                    <div class="nk-tb-col nk-tb-col-tools text-end">
+                                        <div class="dropdown">
+                                            <a href="javascript:;" class="btn btn-xs btn-outline-light btn-icon dropdown-toggle" data-bs-toggle="dropdown" data-offset="0,5"><em class="icon ni ni-plus"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-xs dropdown-menu-end">
+                                                <ul class="link-tidy sm no-bdr">
+                                                    <li class="columnList">
+                                                        <div class="custom-control custom-control-sm custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input toggle-col" checked id="bl">
+                                                            <label class="custom-control-label" for="bl">Balance</label>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-tb-item -->
+                                @foreach (var user in Model)
+                                {
+                                    <div class="nk-tb-item row-div">
+                                        <!-- CheckBox Column -->
+                                        <div class="nk-tb-col nk-tb-col-check">
+                                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                <input type="checkbox" class="custom-control-input" id="@user.UserId">
+                                                <label class="custom-control-label" for="@user.UserId"></label>
+                                            </div>
+                                        </div>
+                                        <!-- Full Name and Email Column -->
+                                        <div class="nk-tb-col">
+                                            <a href="html/user-details-regular.html">
+                                                <div class="user-card">
+                                                    <div class="user-avatar bg-primary">
+                                                        @{
+                                                            var full = user.FullName;
+                                                            var parts = full.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                                                        }
+                                                        <span>@( (parts.First()[0].ToString() + parts.Last()[0].ToString()).ToUpper() )</span>
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="tb-lead">@user.FullName <span class="dot dot-success d-md-none ms-1"></span></span>
+                                                        <span>@user.Email</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <!-- User Name Column -->
+                                        <div class="nk-tb-col tb-col-mb">
+                                            <span class="tb-amount"> <span class="user-name">@user.Username</span></span>
+                                        </div>
+                                        <!-- Role Column -->
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span>@user.UserRoles.First().Role.RoleName</span>
+                                        </div>
+                                        <!-- Verified Column -->
+                                        <div class="nk-tb-col tb-col-lg">
+                                            <ul class="list-status">
+                                                <li><em class="icon @((bool)user.IsEmail ? SCADashboard.Infrastructure.Helper.Icons.CircleTextIcon.GetText() : SCADashboard.Infrastructure.Helper.Icons.AlertTextIcon.GetText())"></em><span>Email</span></li>
+
+                                            </ul>
+                                        </div>
+                                        <!-- Last Login Column -->
+                                        <div class="nk-tb-col tb-col-lg">
+                                            <span>10 Feb 2020</span>
+                                        </div>
+                                        <!-- Login Tag -->
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span class="tb-status text-success">
+                                                <span class="badge badge-dot @((bool)user.IsLogin ? SCADashboard.Infrastructure.Helper.UserStatusEnum.DotSuccess.GetText() : SCADashboard.Infrastructure.Helper.UserStatusEnum.DotDanger.GetText())"> @((bool)user.IsLogin ? "Online" : "Offline")</span>
+                                            </span>
+                                        </div>
+
+                                        <!-- Active Tag -->
+                                        <div class="nk-tb-col tb-col-md">
+                                            <span class="tb-status @(user.IsActive? SCADashboard.Infrastructure.Helper.UserStatusEnum.TextSuccess.GetText():SCADashboard.Infrastructure.Helper.UserStatusEnum.TextDanger.GetText())">@(user.IsActive ? "Active" : "In Active")</span>
+                                        </div>
+
+                                        <!--Icons -->
+                                        <div class="nk-tb-col nk-tb-col-tools">
+                                            <ul class="nk-tb-actions gx-1">
+                                                @{
+                                                    if (pagePermission.CanView)
+                                                    {
+                                                        <li class="nk-tb-action-hidden">
+                                                            <a href="javascript:;" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" _id="@user.UserId" id="View" title="View" actionfor="View">
+                                                                <em class="icon @(SCADashboard.Infrastructure.Helper.Icons.EyeIcon.GetText())"></em>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    if (pagePermission.CanEdit)
+                                                    {
+                                                        <li class="nk-tb-action-hidden">
+                                                            <a href="javascript:;" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" _id="@user.UserId" id="Edit" title="Edit" actionfor="Edit">
+                                                                <em class="icon @(SCADashboard.Infrastructure.Helper.Icons.EditIcon.GetText())"></em>
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    if (pagePermission.CanDelete)
+                                                    {
+                                                        <li class="nk-tb-action-hidden">
+                                                            <a href="javascript:;" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" _id="@user.UserId" id="Delete" title="Delete" actionfor="Delete">
+                                                                <em class="icon @(SCADashboard.Infrastructure.Helper.Icons.TrashIcon.GetText())"></em>
+                                                            </a>
+                                                        </li>
+                                                    }
+
+
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- .nk-tb-item -->
+                                }
+                            </div><!-- .nk-tb-list -->
+                        </div><!-- .card-inner -->
+                        <div class="card-inner">
+                            <div class="nk-block-between-md g-3">
+                                <div class="g">
+                                    <ul class="pagination justify-content-center justify-content-md-start">
+                                        <li class="page-item"><a class="page-link" href="javascript:;">Prev</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:;">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:;">2</a></li>
+                                        <li class="page-item"><span class="page-link"><em class="icon ni ni-more-h"></em></span></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:;">6</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:;">7</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:;">Next</a></li>
+                                    </ul><!-- .pagination -->
+                                </div>
+                                <div class="g">
+                                    <div class="pagination-goto d-flex justify-content-center justify-content-md-start gx-3">
+                                        <div>Page</div>
+                                        <div>
+                                            <select class="form-select js-select2" data-search="on" data-dropdown="xs center">
+                                                <option value="page-1">1</option>
+                                                <option value="page-2">2</option>
+                                                <option value="page-4">4</option>
+                                                <option value="page-5">5</option>
+                                                <option value="page-6">6</option>
+                                                <option value="page-7">7</option>
+                                                <option value="page-8">8</option>
+                                                <option value="page-9">9</option>
+                                                <option value="page-10">10</option>
+                                                <option value="page-11">11</option>
+                                                <option value="page-12">12</option>
+                                                <option value="page-13">13</option>
+                                                <option value="page-14">14</option>
+                                                <option value="page-15">15</option>
+                                                <option value="page-16">16</option>
+                                                <option value="page-17">17</option>
+                                                <option value="page-18">18</option>
+                                                <option value="page-19">19</option>
+                                                <option value="page-20">20</option>
+                                            </select>
+                                        </div>
+                                        <div>OF 102</div>
+                                    </div>
+                                </div><!-- .pagination-goto -->
+                            </div><!-- .nk-block-between -->
+                        </div><!-- .card-inner -->
+                    </div><!-- .card-inner-group -->
+                </div><!-- .card -->
+            </div><!-- .nk-block -->
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+
+        $(function () {
+          // Open Create User modal
+            $("#btnAdd,#Edit,#View").click(function () {
+                var userId = $(this).attr("_id");// get ID from data-id attribute
+                var action=$(this).attr("actionfor");
+                $.get("/User/Create", { id: userId }, function (data) {
+
+                    $("#ModalEdit").html(data);
+                    CheckAction(action);
+                    Validation();
+                    initializeSelect2();
+                    $("#editModal").modal("show");
+
+
+                });
+            });
+
+            // Handle form submit (async)
+            $(document).on("submit", "#createForm", async function (e) {
+                e.preventDefault();
+
+                const form = $(this);
+                try {
+                    const response = await $.ajax({
+                        url: form.attr("action"),
+                        type: form.attr("method"),
+                        data: form.serialize()
+                    });
+
+                    if (response.success) {
+                        $("#editModal").modal("hide");
+                        handleResponse(response);
+
+                    } else {
+
+                        $("#ModalEdit").html(response);
+                    }
+                } catch (error) {
+                    console.error("Error saving user:", error);
+                    alert("An unexpected error occurred while saving the user.");
+                }
+            });
+
+            $(document).on('click', '#Delete', function() {
+                var currentController = '@ViewContext.RouteData.Values["controller"]';
+                var Id = $(this).attr("_id");
+                var actionfor = $(this).attr("actionfor");
+                var url=currentController+"/"+actionfor;
+                var row=$(this).closest('.row-div');
+                var name=row.find('.user-name').text();
+                    DeleteModal(Id,true,url,name);
+            });
+        });
+    </script>
+}

@@ -1,0 +1,623 @@
+﻿@{
+    var pagePermission = SCADashboard.Infrastructure.Helper.PermissionHelper.GetCurrentPagePermission(HttpContextAccessor.HttpContext);
+}
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-xl">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h3 class="nk-block-title page-title">@pagePermission.PageName</h3>
+                        <div class="nk-block-des text-soft">
+                            <p>You have total 95 projects.</p>
+                        </div>
+                    </div><!-- .nk-block-head-content -->
+                    <div class="nk-block-head-content">
+                        <div class="toggle-wrap nk-block-tools-toggle">
+                            <a href="javascript:;" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
+                            <div class="toggle-expand-content" data-content="pageMenu">
+                                <ul class="nk-block-tools g-3">
+                                    <li>
+                                        <div class="drodown">
+                                            <a href="javascript:;" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-filter-alt"></em><span>Filtered By</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="javascript:;"><span>Open</span></a></li>
+                                                    <li><a href="javascript:;"><span>Closed</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    @{
+                                        if (pagePermission.CanAdd)
+                                        {
+                                            <li class="nk-block-tools-opt d-none d-sm-block">
+                                                <a href="javascript:;" class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Add Project</span></a>
+                                            </li>
+                                        }
+                                    }
+                                    <li class="nk-block-tools-opt d-block d-sm-none">
+                                        <a href="javascript:;" class="btn btn-icon btn-primary"><em class="icon ni ni-plus"></em></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- .toggle-wrap -->
+                    </div><!-- .nk-block-head-content -->
+                </div><!-- .nk-block-between -->
+            </div><!-- .nk-block-head -->
+            <div class="nk-block">
+                <div class="row g-gs">
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-purple"><span>DD</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Dashlite Development</h6>
+                                                <span class="sub-text">Softnio</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Design and develop the DashLite template for Envato Marketplace.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>3 Tasks</span></div>
+                                            <div class="project-progress-percent">93.5%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="93.5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><span>A</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar sm bg-blue"><img src="./images/avatar/b-sm.jpg" alt=""></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar bg-light sm"><span>+12</span></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-warning"><em class="icon ni ni-clock"></em><span>5 Days Left</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-warning"><span>RW</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Redesign Website</h6>
+                                                <span class="sub-text">Runnergy</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="javascript:;" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Design the website for Runnergy main website including their user dashboard.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>25 Tasks</span></div>
+                                            <div class="project-progress-percent">23%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="23"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar sm bg-blue"><span>N</span></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>21 Days Left</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-info"><span>KR</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Keyword Research for SEO</h6>
+                                                <span class="sub-text">Techyspec</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Improve SEO keyword research, A/B testing, Local market improvement.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>2 Tasks</span></div>
+                                            <div class="project-progress-percent">52.5%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="52.5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><img src="./images/avatar/a-sm.jpg" alt=""></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-danger"><em class="icon ni ni-clock"></em><span>Due Tomorrow</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-danger"><span>WD</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Website Development</h6>
+                                                <span class="sub-text">Fitness Next</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Develop the website using WordPree for the Fitness Next client.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>44 Tasks</span></div>
+                                            <div class="project-progress-percent">65.5%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="65.5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-blue"><span>N</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>16 Days Left</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-info"><span>KR</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Keyword Research for SEO</h6>
+                                                <span class="sub-text">Techyspec</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Improve SEO keyword research, A/B testing, Local market improvement.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>8 Tasks</span></div>
+                                            <div class="project-progress-percent">100%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><img src="./images/avatar/a-sm.jpg" alt=""></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><img src="./images/avatar/d-sm.jpg" alt=""></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-success"><em class="icon ni ni-clock"></em><span>Done</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-purple"><span>DD</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Dashlite Development</h6>
+                                                <span class="sub-text">Softnio</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Design and develop the DashLite template for Envato Marketplace.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>3 Tasks</span></div>
+                                            <div class="project-progress-percent">93.5%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="93.5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><span>A</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar sm bg-blue"><img src="./images/avatar/b-sm.jpg" alt=""></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar bg-light sm"><span>+12</span></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-warning"><em class="icon ni ni-clock"></em><span>5 Days Left</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-danger"><span>WD</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Website Development</h6>
+                                                <span class="sub-text">Fitness Next</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Develop the website using WordPree for the Fitness Next client.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>44 Tasks</span></div>
+                                            <div class="project-progress-percent">65.5%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="65.5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-blue"><span>N</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>16 Days Left</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-inner">
+                                <div class="project">
+                                    <div class="project-head">
+                                        <a href="#tranxDetails" data-bs-toggle="modal" class="project-title">
+                                            <div class="user-avatar sq bg-warning"><span>RW</span></div>
+                                            <div class="project-info">
+                                                <h6 class="title">Redesign Website</h6>
+                                                <span class="sub-text">Runnergy</span>
+                                            </div>
+                                        </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 me-n1" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <ul class="link-list-opt no-bdr">
+                                                    <li><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <li hidden><a href="#tranxDetails" data-bs-toggle="modal"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-details">
+                                        <p>Design the website for Runnergy main website including their user dashboard.</p>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="project-progress-details">
+                                            <div class="project-progress-task"><em class="icon ni ni-check-round-cut"></em><span>25 Tasks</span></div>
+                                            <div class="project-progress-percent">23%</div>
+                                        </div>
+                                        <div class="progress progress-pill progress-md bg-light">
+                                            <div class="progress-bar" data-progress="23"></div>
+                                        </div>
+                                    </div>
+                                    <div class="project-meta">
+                                        <ul class="project-users g-1">
+                                            <li>
+                                                <div class="user-avatar sm bg-primary"><img src="./images/avatar/c-sm.jpg" alt=""></div>
+                                            </li>
+                                            <li>
+                                                <div class="user-avatar sm bg-blue"><span>N</span></div>
+                                            </li>
+                                        </ul>
+                                        <span class="badge badge-dim bg-light text-gray"><em class="icon ni ni-clock"></em><span>21 Days Left</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .nk-block -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="tranxDetails">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-body modal-body-md">
+                <div class="nk-modal-head mb-3 mb-sm-5">
+                    <h4 class="nk-modal-title title">Work Order <small class="text-primary">010320_KW50</small></h4>
+                </div>
+                <div class="nk-tnx-details">
+                    <div class="nk-block-between flex-wrap g-3" hidden>
+                        <div class="nk-tnx-type">
+                            <div class="nk-tnx-type-icon bg-warning text-white">
+                                <em class="icon ni ni-arrow-up-right"></em>
+                            </div>
+                            <div class="nk-tnx-type-text">
+                                <h5 class="title">+ 0.004560 BTC</h5>
+                                <span class="sub-text mt-n1">15 Oct, 2019 09:45 PM</span>
+                            </div>
+                        </div>
+                        <ul class="align-center flex-wrap gx-3">
+                            <li>
+                                <span class="badge badge-sm bg-success">Completed</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nk-modal-head mt-sm-5 mt-4 mb-4">
+                        <h5 class="title">General</h5>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-lg-3">
+                            <span class="sub-text">Work Order</span>
+                            <span class="caption-text">010320_KW50</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Picking Status</span>
+                            <span class="caption-text text-break">Active</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Work Order Date</span>
+                            <span class="caption-text">04.12.2024 13:35:47</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Owner</span>
+                            <span class="caption-text">100</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Picking Flow State</span>
+                            <span class="caption-text">Released</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Production Date</span>
+                            <span class="caption-text">09.12.2024 00:00:00</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Priority</span>
+                            <span class="caption-text">5</span>
+                        </div>
+                    </div><!-- .row -->
+                    <div class="nk-modal-head mt-sm-5 mt-4 mb-4">
+                        <h5 class="title">Product: 010320</h5>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-lg-3" hidden>
+                            <span class="sub-text">Product</span>
+                            <span class="caption-text"></span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Owner</span>
+                            <span class="caption-text align-center"> <span class="badge bg-primary ms-2 text-white">100</span></span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Description</span>
+                            <span class="caption-text text-break">Protein Mix Box - 12 Bars</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Quantity to Manufacture</span>
+                            <span class="caption-text text-break">4.000 St.</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Quantity Received</span>
+                            <span class="caption-text text-break">1.264 St.</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Produktvariante</span>
+                            <span class="caption-text text-break">100</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Lot Code</span>
+                            <span class="caption-text text-break">05/2050</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">SSCC Nummer</span>
+                            <span class="caption-text text-break">00</span>
+                        </div>
+                        <div class="col-lg-3">
+                            <span class="sub-text">Best Before Date</span>
+                            <span class="caption-text">31.12.2050</span>
+                        </div>
+                    </div><!-- .row -->
+                </div><!-- .nk-tnx-details -->
+
+                <div class="nk-modal-head mt-sm-5 mt-4 mb-4">
+                    <h5 class="title">Work Order Lines</h5>
+                </div>
+                <div class="nk-block nk-block-lg">
+                    <div class="card card-preview">
+                        <div class="card-inner">
+                            <div class="table-responsive">
+                                <table class="datatable-init-export nowrap table" data-export-title="Export">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- .card-preview -->
+                </div> <!-- nk-block -->
+            </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+
+
+<script src="./assets/js/libs/jkanban.js?ver=3.2.3"></script>
+<script src="./assets/js/apps/kanban.js?ver=3.2.3"></script>

@@ -1,0 +1,28 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=THINKPAD-AMAR\\SQLEXPRESS;Database=SCADASHBOARD;User Id=sa;Password=inter123net;TrustServerCertificate=True;Encrypt=False;Trusted_Connection=False;"
+  },
+  "Encryption": {
+    "Key": "12345678901234567890123456789012",
+    "IV": "1234567890123456"
+  },
+  "Jwt": {
+    "Issuer": "AMARALI",
+    "Audience": "AMARALI",
+    "SecretKey": "12345678901234567890123456789012",
+    "ExpirationMinutes": 60
+  },
+  "SMTP": {
+    "SmtpServer": "smtp-mail.outlook.com",
+    "Port": 587,
+    "Email": "info@sca-muc.de",
+    "Password": "scaINF!11"
+  },
+  "Twilio": {
+    
+    "accountSid": "hd57arFxQ3FPDU1dSXV6LMEAIytWxzlwfKdEsCZVeFUsGO7ZIdh/S7zCkdo85NtP",
+    "authToken": "JwLDnTjWFij9roHR7fVToE9nucHV+KRCjEaCRAvG2jdcRPYPRWLqZ44NRd43pp/K",
+    "twilioNumber": "XxUxNATtoEtTJWOqD8ggDg==",
+    "ContentSid": "HX229f5a04fd0510ce1b071852155d3e75"
+  }
+}

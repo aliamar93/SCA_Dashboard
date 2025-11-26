@@ -1,0 +1,135 @@
+﻿@using SCADashboard.Core.ModelView
+@model RoleWisePermissionDto
+
+<div class="modal fade" id="rolePermissionModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Permissions for: @Model.RoleName</h5>
+                <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                @* <button type="button" class="close" data-dismiss="modal">&times;</button> *@
+            </div>
+
+            <div class="modal-body modal-body-md">
+                <ul class="nk-nav nav nav-tabs" id="moduleTabs" role="tablist">
+                    @for (int i = 0; i < Model.Modules.Count; i++)
+                    {
+                        var module = Model.Modules[i];
+                        <li class="nav-item">
+                            <a class="nav-link @(i == 0 ? "active" : "")"
+                               id="tab-@module.ModuleId"
+                               data-bs-toggle="tab"
+                               href="#module-@module.ModuleId"
+                               role="tab">@module.ModuleName</a>
+                        </li>
+                    }
+                </ul>
+
+                <div class="tab-content">
+                    @for (int i = 0; i < Model.Modules.Count; i++)
+                    {
+                        var module = Model.Modules[i];
+                        <div class="tab-pane fade show @(i == 0 ? "active" : "")"
+                             id="module-@module.ModuleId" role="tabpanel">
+                            <div class="card card-preview">
+                                <div class="card-inner">
+                                    <table class="datatable-init table">
+                                        <thead>
+                                            <tr>
+                                                <th>Page</th>
+                                                <th>Can Add</th>
+                                                <th>Can Edit</th>
+                                                <th>Can View</th>
+                                                <th>Can Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var pg in module.Pages)
+                                            {
+                                                <tr data-pageid="@pg.PageId" data-moduleid="@module.ModuleId">
+                                                    <td>@pg.PageName</td>
+                                                    <td>
+                                                        @* checked="@(pg.CanAdd ? "checked" : "")" *@
+                                                        <input type="checkbox" class="perm-add" id="CanAdd" asp-for="@pg.CanAdd"  />
+                                                    </td>
+                                                    <td>
+                                                        @* checked="@(pg.CanEdit ? "checked" : "")" *@
+                                                        <input type="checkbox" class="perm-edit" id="CanEdit" asp-for="@pg.CanEdit" />
+                                                    </td>
+                                                    <td>
+                                                        @* checked="@(pg.CanView ? "checked" : "")" *@
+                                                        <input type="checkbox" class="perm-view" id="CanView" asp-for="@pg.CanView"  />
+                                                    </td>
+                                                    <td>
+                                                        @* checked="@(pg.CanDelete ? "checked" : "")" *@
+                                                        <input type="checkbox" class="perm-delete" id="CanDelete" asp-for="@pg.CanDelete"  />
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="btnSavePermissions" class="btn btn-primary">Save</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#btnSavePermissions').off('click').on('click', function () {
+        var data = {
+            roleId: @Model.RoleId,
+            modules: []
+        };
+
+        $('#rolePermissionModal .tab-pane').each(function () {
+            var moduleId = $(this).attr('id').replace('module-', '');
+            var moduleData = {
+                moduleId: parseInt(moduleId),
+                moduleName: $(this).find('a.nav-link.active').text(),
+                pages: []
+            };
+
+            $(this).find('tbody tr').each(function () {
+                moduleData.pages.push({
+                    pageId: parseInt($(this).data('pageid')),
+                    canView: $(this).find('.perm-view').is(':checked'),
+                    canEdit: $(this).find('.perm-edit').is(':checked'),
+                    canAdd: $(this).find('.perm-add').is(':checked'),
+                    canDelete: $(this).find('.perm-delete').is(':checked')
+                });
+            });
+
+            data.modules.push(moduleData);
+        });
+
+        $.ajax({
+            url: '/Role/SaveRolePermissions',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (response) {
+                if (response.success) {
+                    showToast("Success", response.message, "success", null);
+                    $('#rolePermissionModal').modal('hide');
+                } else {
+                    showToast("Error", response.message, "error", null);
+                }
+            },
+            error: function () {
+                showToast("Error", "Something went wrong", "error", null);
+            }
+        });
+    });
+</script>

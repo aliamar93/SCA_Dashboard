@@ -1,0 +1,33 @@
+{
+  "version": "3.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "devextreme@latest",
+      "destination": "wwwroot/lib/devextreme/",
+      "files": [
+        "dist/css/fonts/Roboto-300.ttf",
+        "dist/css/fonts/Roboto-300.woff",
+        "dist/css/fonts/Roboto-300.woff2",
+        "dist/css/fonts/Roboto-400.ttf",
+        "dist/css/fonts/Roboto-400.woff",
+        "dist/css/fonts/Roboto-400.woff2",
+        "dist/css/fonts/Roboto-500.ttf",
+        "dist/css/fonts/Roboto-500.woff",
+        "dist/css/fonts/Roboto-500.woff2",
+        "dist/css/fonts/Roboto-700.ttf",
+        "dist/css/fonts/Roboto-700.woff",
+        "dist/css/fonts/Roboto-700.woff2",
+        "dist/css/icons/dxicons.ttf",
+        "dist/css/icons/dxicons.woff",
+        "dist/css/icons/dxicons.woff2",
+        "dist/css/icons/dxiconsfluent.ttf",
+        "dist/css/icons/dxiconsfluent.woff",
+        "dist/css/icons/dxiconsfluent.woff2",
+        "dist/css/icons/dxiconsmaterial.ttf",
+        "dist/css/icons/dxiconsmaterial.woff",
+        "dist/css/icons/dxiconsmaterial.woff2"
+      ]
+    }
+  ]
+}

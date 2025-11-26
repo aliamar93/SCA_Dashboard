@@ -1,0 +1,85 @@
+﻿@model SCADashboard.Core.Models.User
+
+<!-- Modal Form -->
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="createForm" asp-action="Create" asp-controller="User" method="post" class="form-validate is-alter">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add User</h5>
+                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <em class="icon ni ni-cross"></em>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="TenantId" name="TenantId" value="0" asp-for="@Model.TenantId" />
+                    <input type="hidden" id="UserId" name="UserId" asp-for="@Model.UserId" />
+                    <div class="form-group">
+                        <label class="form-label" for="FullName">Full Name</label>
+                        <div class="form-control-wrap">
+
+                            <input type="text" asp-for="@Model.FullName" class="form-control" required>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="Username">User Name</label>
+                        <div class="form-control-wrap">
+                            <div class="form-icon form-icon-right">
+                                <em class="icon ni ni-user"></em>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.Username" required>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="Email">Email address</label>
+                        <div class="form-control-wrap">
+                            <div class="form-icon form-icon-right">
+                                <em class="icon ni ni-mail"></em>
+                            </div>
+                            <input type="text" class="form-control" asp-for="@Model.Email" required>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="PasswordHash">Password</label>
+                        <div class="form-control-wrap">
+                            <input asp-for="@Model.PasswordHash" type="text" class="form-control" required>
+                            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="RoleId">Role</label>
+                        <div class="form-control-wrap">
+                            <select id="RoleId" asp-for="@Model.RoleId" class="form-select js-select2" asp-items="ViewBag.Roles" data-placeholder="Select Role">
+                                <option value="">--Select Role--</option>
+                            </select>
+                            <span asp-validation-for="RoleId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="KundeId">Kunde</label>
+                        <div class="form-control-wrap">
+                            <select id="KundeId" asp-for="@Model.KundeId" multiple class="form-select js-select2" asp-items="ViewBag.Kunde" data-placeholder="Select Kunde">
+                                <option value="">--Select Kunde--</option>
+                            </select>
+                            <span asp-validation-for="KundeId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer bg-light">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="SaveUser" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

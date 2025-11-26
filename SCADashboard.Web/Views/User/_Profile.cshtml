@@ -1,0 +1,125 @@
+﻿@model SCADashboard.Core.Models.User
+
+<!-- @@ Profile Edit Modal e -->
+<div class="modal fade" role="dialog" id="profileedit" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body modal-body-lg">
+                <ul class="nk-nav nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#personal">Personal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#address">Address</a>
+                    </li>
+                </ul><!-- .nav-tabs -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="personal">
+                        <form id="UpdateProfileForm" asp-action="UpdateProfile" asp-controller="User" method="post" class="form-validate is-alter">
+                            <div class="row gy-4">
+                                <input type="hidden" asp-for="@Model.UserId" />
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="FullName">Full Name</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="@Model.FullName" placeholder="Enter Full name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="Username">User Name</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="@Model.Username" placeholder="Enter User name" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="PhoneNo">Phone Number</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="@Model.PhoneNo" placeholder="Phone Number">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="DateOfBirth">Date of Birth</label>
+                                        <input type="text" class="form-control form-control-lg date-picker" asp-for="@Model.DateOfBirth" placeholder=" Enter your birth date">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="latest-sale">
+                                        <label class="custom-control-label" for="latest-sale">Use full name to display </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <button type="submit" class="btn btn-lg btn-primary">Update Profile</button>
+                                        </li>
+                                        <li>
+                                            <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Cancel</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- .tab-pane -->
+                    <div class="tab-pane" id="address">
+                        <form id="UpdateProfileForm" asp-action="UpdateProfile" asp-controller="User" method="post" class="form-validate is-alter">
+                        <div class="row gy-4">
+                            <input type="hidden" asp-for="@Model.UserId" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <label class="form-label" for="AddressLine1">Address Line 1</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="@Model.AddressLine1">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <label class="form-label" for="AddressLine2">Postal Code</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="@Model.AddressLine2">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <label class="form-label" for="State">State</label>
+                                        <input type="text" class="form-control form-control-lg" asp-for="@Model.State">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <label class="form-label" for="Country">Country</label>
+                                        <select asp-for="@Model.Country" class="form-select js-select2" data-ui="lg">
+                                        <option>Germany</option>
+                                        <option>Canada</option>
+                                        <option>United State</option>
+                                        <option>United Kindom</option>
+                                        <option>Australia</option>
+                                        <option>India</option>
+                                        <option>Bangladesh</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                    <li>
+                                            <button type="submit" class="btn btn-lg btn-primary">Update Profile</button>
+                                    </li>
+                                    <li>
+                                            <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Cancel</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        </form>
+                    </div><!-- .tab-pane -->
+                </div><!-- .tab-content -->
+            </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .Profile modal -->
+@section Scripts {
+ 
+
+}

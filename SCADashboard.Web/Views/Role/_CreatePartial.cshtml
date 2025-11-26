@@ -1,0 +1,56 @@
+﻿@model SCADashboard.Core.Models.Role
+
+<!-- Modal Form -->
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="createForm" asp-action="Create" asp-controller="Role" method="post" class="form-validate is-alter">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add User</h5>
+                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <em class="icon ni ni-cross"></em>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="RoleId" name="RoleId" asp-for="@Model.RoleId" />
+                    <input type="hidden" id="TenantId" name="TenantId" value="0" asp-for="@Model.TenantId" />
+                    <div class="form-group">
+                        <label class="form-label" for="RoleName">Role Name</label>
+                        <div class="form-control-wrap">
+                            <input type="text" asp-for="@Model.RoleName" class="form-control" required>
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="Description">Description</label>
+                        <div class="form-control-wrap">
+                            <textarea class="form-control" aria-label="With textarea" asp-for="@Model.Description" required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                            @* <input type="textarea" class="form-control no-resizey" asp-for="@Model.Description" id="User-name" required> *@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        
+                        <div class="form-control-wrap">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" asp-for="@Model.IsActive" checked="@Model.IsActive">
+                                <label class="custom-control-label" for="IsActive">Active</label>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="SaveUser" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* <partial name="_ValidationScriptsPartial" /> *@
+}

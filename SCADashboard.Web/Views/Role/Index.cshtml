@@ -1,0 +1,186 @@
+﻿@model IEnumerable<SCADashboard.Core.Models.Role>
+
+@{
+    var pagePermission = SCADashboard.Infrastructure.Helper.PermissionHelper.GetCurrentPagePermission(HttpContextAccessor.HttpContext);
+}
+
+
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-xl">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Role Lists</h3>
+                            <div class="nk-block-des text-soft">
+                                <p>You have total @Model.Count() Roles.</p>
+                            </div>
+                        </div><!-- .nk-block-head-content -->
+                        <div class="nk-block-head-content d-flex">
+                            @{
+                                if (pagePermission.CanAdd)
+                                {
+
+                                    <button type="button" class="btn btn-primary" id="btnAdd" value="0" actionfor="Add">Add Role</button>
+
+                                }
+                            }
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card card-stretch">
+                        <div class="nk-block nk-block-lg">
+                            <div class="card card-preview">
+                                <div class="card-inner">
+                                    <table class="datatable-init-export nowrap table" id="rolepermissiontable" data-export-title="Export">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @{
+                                                foreach (var item in Model.Select((value,index)=>new{value,index}))
+                                                {
+                                                    <tr>
+                                                        <td>@(item.index+1)</td>
+                                                        <td>@item.value.RoleName</td>
+                                                        <td>@item.value.Description</td>
+                                                        <!--  text-info text-success  text-danger -->
+                                                        <td class="nk-tb-col tb-col-md"><span class="tb-status @(item.value.IsActive? SCADashboard.Infrastructure.Helper.UserStatusEnum.TextSuccess.GetText():SCADashboard.Infrastructure.Helper.UserStatusEnum.TextDanger.GetText())">@(item.value.IsActive ? "Active" : "In Active")</span></td>
+                                                        <td>
+                                                            @{
+                                                                if (pagePermission.CanView)
+                                                                {
+
+                                                                    <a href="javascript:;" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" _id="@item.value.RoleId" id="View" title="View" actionfor="View">
+                                                                        <em class="icon @(SCADashboard.Infrastructure.Helper.Icons.EyeIcon.GetText())"></em>
+                                                                    </a>
+
+                                                                }
+                                                                if (pagePermission.CanEdit)
+                                                                {
+
+                                                                    <a href="javascript:;" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" _id="@item.value.RoleId" id="Edit" title="Edit" actionfor="Edit">
+                                                                        <em class="icon @(SCADashboard.Infrastructure.Helper.Icons.EditIcon.GetText())"></em>
+                                                                    </a>
+
+                                                                }
+                                                                if (pagePermission.CanDelete)
+                                                                {
+                                                                    <a href="javascript:;" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" _id="@item.value.RoleId" id="Delete" title="Delete" actionfor="Delete">
+                                                                        <em class="icon @(SCADashboard.Infrastructure.Helper.Icons.TrashIcon.GetText())"></em>
+                                                                    </a>
+
+                                                                }
+                                                                if (pagePermission.CanAdd)
+                                                                {
+                                                                    <a href="javascript:;" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" _id="@item.value.RoleId" id="Permission" title="Permission" actionfor="Permission">
+                                                                        <em class="icon @(SCADashboard.Infrastructure.Helper.Icons.PermissionIcon.GetText())"></em>
+                                                                    </a>
+                                                                }
+                                                            }
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .card-preview -->
+                        </div> <!-- nk-block -->
+                    </div><!-- .card -->
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+    <div id="ModalContainer"></div>
+</div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <script>
+
+            $(function () {
+
+
+              // Open Create User modal
+                $("#btnAdd,#Edit,#View").click(function () {
+                    var Id = $(this).attr("_id");// get ID from data-id attribute
+                    var action=$(this).attr("actionfor");
+                    $.get("/Role/Create", { id: Id }, function (data) {
+
+                        $("#ModalEdit").html(data);
+                        CheckAction(action);
+                        $("#editModal").modal("show");
+
+                        Validation();
+
+                    });
+                });
+
+                // Handle form submit (async)
+                $(document).on("submit", "#createForm", async function (e) {
+                    e.preventDefault();
+
+                    const form = $(this);
+                    try {
+                        const response = await $.ajax({
+                            url: form.attr("action"),
+                            type: form.attr("method"),
+                            data: form.serialize()
+                        });
+
+                        if (response.success) {
+                            $("#editModal").modal("hide");
+
+                            handleResponse(response);
+                        } else {
+
+                            $("#modalBody").html(response);
+                        }
+                    } catch (error) {
+                        console.error("Error saving user:", error);
+                        alert("An unexpected error occurred while saving the user.");
+                    }
+                });
+
+
+                function openRolePermissionModal(roleId) {
+                $.get('/Role/RolePermissions', { roleId: roleId }, function (html) {
+                    $('#ModalContainer').html(html);
+                    $('#rolePermissionModal').modal("show");
+                });
+            }
+            $('#rolepermissiontable').on('click', '#Permission', function() {
+
+                var roleId = $(this).attr("_id");
+                openRolePermissionModal(roleId)
+            });
+
+            $('#rolepermissiontable').on('click', '#Delete', function() {
+                var currentController = '@ViewContext.RouteData.Values["controller"]';
+                var Id = $(this).attr("_id");
+                var actionfor = $(this).attr("actionfor");
+                var url=currentController+"/"+actionfor;
+                // Get the closest table row (tr)
+                var row = $(this).closest('tr');
+
+                // Extract values from each cell (td)
+                // var id = row.find('td:eq(0)').text();
+                var name = row.find('td:eq(1)').text();
+                // var email = row.find('td:eq(2)').text();
+                    DeleteModal(Id,true,url,name);
+                });
+
+            });
+        </script>
+}

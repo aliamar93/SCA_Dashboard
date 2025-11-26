@@ -1,0 +1,394 @@
+﻿@{
+    var pagePermission = SCADashboard.Infrastructure.Helper.PermissionHelper.GetCurrentPagePermission(HttpContextAccessor.HttpContext);
+}
+
+<div class="nk-content nk-content-fluid">
+    <div class="container-xl wide-xl">
+        <div class="nk-content-body">
+            <div class="components-preview wide-xl mx-auto">
+                <div class="nk-block-head nk-block-head-lg wide-sm">
+                    <div class="nk-block-head-content">
+                        <h2 class="nk-block-title fw-normal">@pagePermission.PageName</h2>
+                    </div>
+                </div><!-- .nk-block-head -->
+                <div class="nk-block nk-block-lg">
+                    <div class="card card-preview">
+                        <div class="card-inner">
+                            <table class="datatable-init-export nowrap table" id="transportunit" data-export-title="Export">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Donna Snider</td>
+                                        <td>Customer Support</td>
+                                        <td>New York</td>
+                                        <td>27</td>
+                                        <td>2011/01/25</td>
+                                        <td>$112,000</td>
+                                        <td><a href="#tranxDetails" class="btn btn-trigger btn-icon" data-bs-toggle="modal" data-bs-placement="top" data-id="1" id="btnView" title="View" actionfor="View"><em class="icon ni ni-eye-fill"></em></a></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- .card-preview -->
+                </div> <!-- nk-block -->
+            </div><!-- .components-preview -->
+        </div>
+    </div>
+</div>
+<div class="Details"></div>
+
+
+<div class="modal fade" tabindex="-1" id="tranxDetails">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-body modal-body-md">
+                <div class="nk-modal-head mb-3 mb-sm-5">
+                    <h4 class="nk-modal-title title">TU: <small class="text-primary">TE00356591</small></h4>
+                </div>
+                <div class="nk-tnx-details">
+                    <div class="nk-block-between flex-wrap g-3" hidden>
+                        <div class="nk-tnx-type">
+                            <div class="nk-tnx-type-icon bg-warning text-white">
+                                <em class="icon ni ni-arrow-up-right"></em>
+                            </div>
+                            <div class="nk-tnx-type-text">
+                                <h5 class="title">+ 0.004560 BTC</h5>
+                                <span class="sub-text mt-n1">15 Oct, 2019 09:45 PM</span>
+                            </div>
+                        </div>
+                        <ul class="align-center flex-wrap gx-3">
+                            <li>
+                                <span class="badge badge-sm bg-success">Completed</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nk-modal-head mt-sm-5 mt-4 mb-4">
+                        <h5 class="title">Transport Unit</h5>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-lg-4">
+                            <span class="sub-text">TU</span>
+                            <span class="caption-text">TE00356591</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="sub-text">Status</span>
+                            <span class="caption-text text-break">Active</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="sub-text">Last Cycle Count Date</span>
+                            <span class="caption-text">04.12.2024 13:35:47</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="sub-text">Last Move Date</span>
+                            <span class="caption-text">27.10.2025 10:39:15</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="sub-text">Create Date</span>
+                            <span class="caption-text">27.10.2025 10:39:15</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="sub-text">Created By</span>
+                            <span class="caption-text">viktoria</span>
+                        </div>
+                    </div><!-- .row -->
+                </div><!-- .nk-tnx-details -->
+
+                <div class="nk-modal-head mt-sm-5 mt-4 mb-4">
+                    <h5 class="title">Load Units</h5>
+                </div>
+                <div class="nk-block nk-block-lg">
+                    <div class="card card-preview">
+                        <div class="card-inner">
+                            <div class="table-responsive">
+                                <table class="datatable-init-export display nowrap table" id="LoadUnit" data-export-title="Export">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                            <td>Donna Snider</td>
+                                            <td>Customer Support</td>
+                                            <td>New York</td>
+                                            <td>27</td>
+                                            <td>2011/01/25</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- .card-preview -->
+                </div> <!-- nk-block -->
+            </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+
+        $(function () {
+
+            function init() {
+                bindEvents();
+                setupUI("#transportunit");
+            }
+
+            function bindEvents() {
+                $('#btnView').click(onView);
+            }
+
+            function setupUI(tableSelector) {
+                initColumnSettings(tableSelector);
+            }
+
+            function onView(e) {
+                e.preventDefault();
+                setupUI("#LoadUnit");
+                var id=$(this).attr('data-id');
+
+                // const result = await loadPartialView('/TransportUnit/Detail', { id }, '#Details');
+            }
+
+            async function loadPartialView(url, data = {}, containerSelector, loadingText = 'Loading...') {
+                try {
+                    if (containerSelector) {
+                        $(containerSelector).html(`<p>${loadingText}</p>`);
+                    }
+
+                    const result = await $.ajax({
+                        url: url,
+                        type: 'GET',
+                        data: data
+                    });
+
+                    if (containerSelector) {
+                        $(containerSelector).html(result);
+                    }
+                    // 🔥 Trigger a custom event and pass the container that was updated
+                    $(document).trigger('partialViewLoaded', [containerSelector]);
+
+                    return result; // In case you want to use it further
+
+                } catch (err) {
+                    console.error('Error loading partial:', err);
+                    if (containerSelector) {
+                        $(containerSelector).html('<p class="text-danger">Failed to load content.</p>');
+                    }
+                    return null;
+                }
+        }
+
+            init();
+        });
+    </script>
+}
