@@ -20,9 +20,9 @@
   },
   "Twilio": {
     
-    "accountSid": "hd57arFxQ3FPDU1dSXV6LMEAIytWxzlwfKdEsCZVeFUsGO7ZIdh/S7zCkdo85NtP",
-    "authToken": "JwLDnTjWFij9roHR7fVToE9nucHV+KRCjEaCRAvG2jdcRPYPRWLqZ44NRd43pp/K",
-    "twilioNumber": "XxUxNATtoEtTJWOqD8ggDg==",
-    "ContentSid": "HX229f5a04fd0510ce1b071852155d3e75"
+    "accountSid": "accountSid",
+    "authToken": "authToken",
+    "twilioNumber": "twilioNumber",
+    "ContentSid": "ContentSid"
   }
 }
